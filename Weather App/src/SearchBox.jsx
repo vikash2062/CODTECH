@@ -11,7 +11,7 @@ function WeatherApp() {
   const [error, setError] = useState("");
 
   const API_URL = "https://api.openweathermap.org/data/2.5/weather";
-  const API_KEY = "db6bf95528f4814cb85a2b9a521a8817";
+  const API_KEY = "--------------------";
 
   const getWeatherInfo = async () => {
     if (!city.trim()) {
