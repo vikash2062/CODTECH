@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Tracker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Productivity Tracker</h1>
+      <div class="user-section">
+        <div id="logged-out" class="auth-status">
+          <button id="login-btn">Login</button>
+          <button id="signup-btn">Sign Up</button>
+        </div>
+        <div id="logged-in" class="auth-status hidden">
+          <span id="username"></span>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+      <button class="tab-btn" data-tab="settings">Settings</button>
+      <button class="tab-btn" data-tab="reports">Reports</button>
+    </div>
+    
+    <div class="tab-content">
+      <!-- Dashboard Tab -->
+      <div id="dashboard" class="tab-panel active">
+        <div class="summary">
+          <div class="summary-item">
+            <h3>Today's Activity</h3>
+            <div id="today-total">0 min</div>
+          </div>
+          <div class="summary-item">
+            <h3>Productive Time</h3>
+            <div id="productive-time">0 min</div>
+          </div>
+          <div class="summary-item">
+            <h3>Distracted Time</h3>
+            <div id="distracted-time">0 min</div>
+          </div>
+        </div>
+        
+        <div class="activity-list">
+          <h3>Website Activity</h3>
+          <div id="activity-container"></div>
+        </div>
+      </div>
+      
+      <!-- Settings Tab -->
+      <div id="settings" class="tab-panel">
+        <div class="settings-section">
+          <h3>Productivity Categories</h3>
+          <div class="category-settings">
+            <div class="category productive">
+              <h4>Productive Sites</h4>
+              <div class="site-list" id="productive-sites"></div>
+              <div class="add-site">
+                <input type="text" id="add-productive-input" placeholder="domain.com">
+                <button id="add-productive-btn">Add</button>
+              </div>
+            </div>
+            <div class="category distraction">
+              <h4>Distracting Sites</h4>
+              <div class="site-list" id="distraction-sites"></div>
+              <div class="add-site">
+                <input type="text" id="add-distraction-input" placeholder="domain.com">
+                <button id="add-distraction-btn">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>Site Blocking</h3>
+          <div class="block-settings">
+            <div class="site-list" id="blocked-sites"></div>
+            <div class="add-site">
+              <input type="text" id="add-blocked-input" placeholder="domain.com">
+              <button id="add-blocked-btn">Block Site</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>Daily Goals</h3>
+          <div class="goal-settings">
+            <div class="goal-item">
+              <label for="productive-goal">Productive Time Goal (minutes)</label>
+              <input type="number" id="productive-goal" min="0" value="120">
+            </div>
+            <div class="goal-item">
+              <label for="distraction-limit">Distraction Time Limit (minutes)</label>
+              <input type="number" id="distraction-limit" min="0" value="60">
+            </div>
+            <button id="save-goals-btn">Save Goals</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Reports Tab -->
+      <div id="reports" class="tab-panel">
+        <div class="report-options">
+          <div class="timeframe-selector">
+            <button class="timeframe-btn active" data-timeframe="day">Day</button>
+            <button class="timeframe-btn" data-timeframe="week">Week</button>
+            <button class="timeframe-btn" data-timeframe="month">Month</button>
+          </div>
+          <button id="download-report-btn">Download Report</button>
+        </div>
+        
+        <div class="chart-container">
+          <canvas id="activity-chart"></canvas>
+        </div>
+        
+        <div class="stats-container">
+          <h3>Key Statistics</h3>
+          <div id="stats-content"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Auth Modals -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="login-email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="login-password" required>
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+    
+    <div id="signup-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="signup-name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="signup-email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="signup-password" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="signup-confirm-password" required>
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
